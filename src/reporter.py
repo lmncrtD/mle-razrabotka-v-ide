@@ -22,3 +22,12 @@ class DataFrameReporter:
             'Доля дубликатов:',
             format(duplicates / df.shape[0], self.percent_format),
         )
+
+        print(df.describe(include='all' if self.include_all else None))
+
+        missing_count = df.isna().sum().sum()
+        print('Количество пропусков:', missing_count)
+        print(
+            'Доля пропусков:',
+            format(missing_count / df.size, self.float_format),
+        )
